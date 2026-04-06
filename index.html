@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Access Questionnaire</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   
+  
+    <main id="form-container">
+      <header>
+    <h1>Student Information Access Questionnaire</h1>
+   </header>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <form id="research-form">
+    <section class="form-step active" data-step="1">
+      <h2>1. What year are you in?</h2>
+      <div class="button-grid">
+        <label class="option-card"><input type="radio" name="year" value="1"><span>Level 100</span></label>
+        <label class="option-card"><input type="radio" name="year" value="2"><span>Level 200</span></label>
+        <label class="option-card"><input type="radio" name="year" value="3"><span>Level 300</span></label>
+        <label class="option-card"><input type="radio" name="year" value="4"><span>Level 400</span></label>
+      </div>
+    </section>
+
+    <section class="form-step" data-step="2">
+      <h2>2. What programme do you offer?</h2>
+      <div class="button-grid">
+        <textarea name="programme" id="programme" placeholder="e.g. Computer Science, Mathematics..."></textarea>
+      </div>
+    </section>
+  
+  <section class="form-step" data-step="3">
+    <h2>3. What device do you primarily use to access information?</h2>
+    <div class="button-grid">
+      <label class="option-card"><input type="radio" name="device" value="Laptop"><span>Laptop / PC</span></label>
+      <label class="option-card"><input type="radio" name="device" value="Smartphone"><span>Smartphone</span></label>
+      <label class="option-card"><input type="radio" name="device" value="Tablet"><span>Tablet</span></label>
+    </div>
+  </section>
+
+
+  <section class="form-step" data-step="4">
+      <h2>4. What information do you find hardest to locate?</h2>
+      <div class="button-grid">
+        <label class="option-card"><input type="radio" name="hard_to_find" value="Timetables"><span>Timetables</span></label>
+        <label class="option-card"><input type="radio" name="hard_to_find" value="Materials"><span>Course Materials</span></label>
+        <label class="option-card"><input type="radio" name="hard_to_find" value="Announcements"><span>Announcements</span></label><br>
+        <label class="option-card"><input type="text" name="hard_to_find_other" placeholder="Other..."></label>
+      </div>
+  </section>
+
+  <section class="form-step" data-step="5">
+    <h2>5. How often do you miss information(lecture rescheduling,deadlines,etc.)? (1-4 Scale)</h2>
+    <div class="rating-grid">
+      <label class="rating-box"><input type="radio" name="freq_scale" value="1"><span>1 (Once)</span></label>
+      <label class="rating-box"><input type="radio" name="freq_scale" value="2"><span>2 (Sometimes)</span></label>
+      <label class="rating-box"><input type="radio" name="freq_scale" value="3"><span>3 (Often)</span></label>
+      <label class="rating-box"><input type="radio" name="freq_scale" value="4"><span>4 (Very Often)</span></label>
+    </div>
+  </section>
+
+
+  <section class="form-step" data-step="6">
+    <h2>6. Have you ever missed a deadline due to lack of information?</h2>
+    <div class="button-grid">
+      <label class="option-card"><input type="radio" name="missed_event" value="Yes"><span>Yes</span></label>
+      <label class="option-card"><input type="radio" name="missed_event" value="No"><span>No</span></label>
+    </div>
+  </section>
+
+ <section class="form-step" data-step="7">
+    <h2>7. Primary Source of Information</h2>
+    <div class="button-grid">
+      <label class="option-card"><input type="radio" name="source" value="Sakai"><span>Sakai (LMS)</span></label>
+      <label class="option-card"><input type="radio" name="source" value="WhatsApp"><span>WhatsApp Groups</span></label>
+      <label class="option-card"><input type="radio" name="source" value="Email"><span>Official Email</span></label>
+    </div>
+ </section>
+
+  <section class="form-step" data-step="8">
+      <h2>8. How satisfied are you with your current information sources? (1-5)</h2>
+      <div class="rating-grid">
+        <label class="rating-box"><input type="radio" name="satisfaction" value="1"><span>1</span></label>
+        <label class="rating-box"><input type="radio" name="satisfaction" value="2"><span>2</span></label>
+        <label class="rating-box"><input type="radio" name="satisfaction" value="3"><span>3</span></label>
+        <label class="rating-box"><input type="radio" name="satisfaction" value="4"><span>4</span></label>
+        <label class="rating-box"><input type="radio" name="satisfaction" value="5"><span>5</span></label>
+      </div>
+  </section>
+
+
+  <section class="form-step" data-step="9">
+    <h2>9. How often do you check for updates?</h2>
+    <div class="button-grid">
+      <label class="option-card"><input type="radio" name="check_freq" value="Daily"><span>Daily</span></label>
+      <label class="option-card"><input type="radio" name="check_freq" value="Weekly"><span>Weekly</span></label>
+      <label class="option-card"><input type="radio" name="check_freq" value="Monthly"><span>Monthly / Rarely</span></label>
+    </div>
+  </section>
+
+   
+
+  <section class="form-step" data-step="10">
+    <h2>10. How do you prefer to receive information?</h2>
+    <textarea name="suggested_solution" id="solution" placeholder="e.g. A centralized mobile app..."></textarea>
+  </section>
+
+
+
+    <div id="result" class="result-container">
+        <!-- Results will be displayed here after submission -->
+    </div>
+
+    <div class="nav-controls">
+    <button type="button" id="prev-btn" class="btn-secondary" disabled>Back</button>
+    <button type="button" id="next-btn" class="btn-primary">Next</button>
+    <button type="submit" id="submit-btn" class="btn-primary hidden">Submit Data</button>
+     <button type="button" id="sync-btn" class="btn-secondary hidden">Sync Offline Data</button>
+  </div>
+
+  </form>
+</main>
+  
+   
+   <script src="script.js"></script>
+</body>
+</html>

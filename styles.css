@@ -1,0 +1,265 @@
+/* =========================================
+   1. SYSTEM VARIABLES & RESET
+   ========================================= */
+:root {
+  /* MIT/Modern App Color Palette */
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --accent-color: #2563eb; /* Crisp modern blue */
+  --accent-hover: #1d4ed8;
+  --border-color: #e5e7eb;
+  --success: #10b981;
+  
+  /* Layout & Shadows */
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* =========================================
+   2. MAIN CONTAINER & PROGRESS
+   ========================================= */
+#form-container {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 540px; /* Optimized for mobile/tablet reading widths */
+  padding: 40px 30px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--text-primary);
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background-color: var(--border-color);
+  border-radius: 10px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 10%; /* JS will update this */
+  background-color: var(--accent-color);
+  transition: width 0.4s ease;
+}
+
+/* =========================================
+   3. FORM STEPS (STATE MANAGEMENT)
+   ========================================= */
+.form-step {
+  display: none; /* Hide all by default */
+  animation: slideIn 0.3s ease forwards;
+}
+
+.form-step.active {
+  display: block; /* Only show active step */
+}
+
+.form-step h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* =========================================
+   4. INTERACTIVE INPUT COMPONENTS
+   ========================================= */
+/* The Grid Layouts */
+.button-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rating-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Option Cards (The cutting-edge radio buttons) */
+.option-card {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.option-card input[type="radio"] {
+  display: none; /* Hide default circle */
+}
+
+/* The "Other" text input inside a card */
+.option-card input[type="text"] {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+/* Hover & Active States */
+.option-card:hover {
+  border-color: #93c5fd;
+  transform: translateY(-1px);
+}
+
+.option-card:has(input[type="radio"]:checked) {
+  background-color: #eff6ff; /* Light blue tint */
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Rating Boxes (1-4 and 1-5 scales) */
+.rating-box {
+  flex: 1;
+  text-align: center;
+  padding: 15px 0;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.rating-box input[type="radio"] {
+  display: none;
+}
+
+.rating-box:hover {
+  border-color: #93c5fd;
+}
+
+.rating-box:has(input[type="radio"]:checked) {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+  transform: scale(1.05); /* Modern pop effect */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Textareas */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  resize: vertical;
+  transition: var(--transition);
+  outline: none;
+}
+
+textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================================
+   5. NAVIGATION CONTROLS
+   ========================================= */
+.nav-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+button {
+  flex: 1;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #f3f4f6;
+  color: var(--text-secondary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #e5e7eb;
+  color: var(--text-primary);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none;
+}
+
+/* =========================================
+   6. ANIMATIONS
+   ========================================= */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
